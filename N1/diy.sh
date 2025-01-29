@@ -6,8 +6,7 @@
 
 # Add packages
 git clone --depth=1 https://github.com/ophub/luci-app-amlogic package/amlogic
-git clone  https://github.com/linkease/luci-app-linkease package/linkease
-git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
+git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
 
 # 加入OpenClash核心
 #chmod -R a+x $GITHUB_WORKSPACE/preset-clash-core.sh
@@ -16,19 +15,18 @@ git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 echo "
 # 插件
 CONFIG_PACKAGE_luci-app-amlogic=y
-CONFIG_PACKAGE_luci-app-linkease=y
-CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-netspeedtest=y
 " >> .config
 
 # 修改默认IP
-sed -i 's/192.168.1.1/192.168.0.2/g' package/base-files/files/bin/config_generate
+sed -i 's/10.0.0.100/10.0.0.101/g' package/base-files/files/bin/config_generate
 
 # 修改默认主题
 sed -i 's/luci-theme-design/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 # 修改主机名
-sed -i 's/ImmortalWrt/OpenWrt/g' package/base-files/files/bin/config_generate
+sed -i 's/ImmortalWrt/AtriWrt/g' package/base-files/files/bin/config_generate
 
 # 修改主题背景
 cp -f $GITHUB_WORKSPACE/argon/img/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
